@@ -51,10 +51,11 @@ get '/memos/:title/edit' do
 end
 
 # メモ編集
-patch '/memos' do
+patch '/memos/:title' do
   File.open("./memos/#{params[:title]}", 'w', encoding: 'Shift_JIS:UTF-8') do |file|
     file.write(params[:content])
   end
+  redirect "/memos/#{params[:title]}"
 end
 
 # メモ削除
