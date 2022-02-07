@@ -1,0 +1,9 @@
+<form action='/memos/new'>
+  <input type="submit" value="追加">
+</form>
+
+<ul>
+  <% @memos.each do |memo| %>
+    <li><a href="<%= memo %>"><%= File.basename(memo, ".*") %></a></li>
+  <% end %>
+</ul>

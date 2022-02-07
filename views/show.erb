@@ -1,0 +1,31 @@
+<br>
+<%= File.basename(params[:title], ".*") %>
+<br>
+<p>
+  <label for="t_content"></label><br>
+  <textarea id="t_content" name="content" placeholder="内容" cols="32" rows="10" readonly><%= escape(@memo.read) %></textarea>
+</p>
+
+
+<table>
+  <tr>
+    <td>
+      <form method="get" action="/memos/<%= params[:title] %>/edit">
+        <input type="submit" class="edit_btn" value="編集">
+      </form>
+    </td>
+    <td>
+      <form method="post" action="/memos/<%= params[:title] %>/delete">
+        <input type="hidden" name="_method" class="edit_btn" value="delete">
+        <input type="submit" value="削除">
+      </form>
+    </td>
+    <td>
+      <form method="get" action='/memos'>
+        <input type="submit" class="show_btn" value="戻る">
+      </form>
+    </td>
+  </tr>
+</table>
+
+
