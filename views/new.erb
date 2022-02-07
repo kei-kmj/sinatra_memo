@@ -1,14 +1,18 @@
 <form method="post" action="/memos">
-  <br>
-  <input type="text" name="title" placeholder="タイトル" size="30">
+  <input type="submit" value="保存">
   <br>
   <p>
-    <label for="t_content"></label><br>
+    <label>
+      <input type="text" name="title" placeholder="タイトル" size="30">
+    </label>
+  </p>
+  <p>
+    <label for="t_content"></label>
     <textarea id="t_content" name="content" placeholder="内容" cols="32" rows="10"></textarea>
   </p>
-
-
-  <input type="submit" value="保存">
-  <input type="reset" value="クリア">
 </form>
 
+<form method="get" action='/memos'>
+  <input type="reset" value="クリア">
+  <input type="submit" class="show_btn" value="一覧に戻る">
+</form>
