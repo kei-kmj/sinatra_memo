@@ -10,7 +10,7 @@
   <p>
     <label>
       <label for="t_content"></label>
-      <textarea id="t_content" name="content" placeholder="内容" cols="32" rows="10"><%= escape(@memo.read) %></textarea>
+      <textarea id="t_content" name="content" placeholder="内容" cols="32" rows="10"><%= @memo.read %></textarea>
     </label>
   </p>
 
@@ -21,7 +21,7 @@
 
     </td>
     <td>
-      <form method="post" action="/memos/<%= params[:title] %>/delete">
+      <form method="post" action="/memos/<%= params[:title] %>">
         <input type="hidden" name="_method" class="edit_btn" value="delete">
         <input type="submit" value="削除">
       </form>

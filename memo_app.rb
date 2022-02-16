@@ -59,7 +59,7 @@ patch '/memos/:title' do
 end
 
 # メモ削除
-delete '/memos/:title/delete' do
+delete '/memos/:title' do
   File.delete("./memos/#{params[:title]}")
   redirect '/memos'
 end

@@ -4,6 +4,6 @@
 
 <ul>
   <% @memos.each do |memo| %>
-    <li><a href="<%= memo %>"><%= File.basename(memo, ".*") %></a></li>
+    <li><a href="<%= escape(memo) %>"><%= File.basename(memo, ".*") %></a></li>
   <% end %>
 </ul>
