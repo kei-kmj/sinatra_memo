@@ -8,10 +8,8 @@ enable :method_override
 
 set :environment, :production
 
-helpers do
-  def escape(text)
-    Rack::Utils.escape_html(text)
-  end
+def sanitize_filename(filename)
+  filename.gsub(%r{\\|/|:|\?|\.|"|<|>|\*|\|}, '_')
 end
 
 get '/' do
@@ -26,7 +24,7 @@ end
 
 # メモ追加
 post '/memos' do
-  File.open("./memos/#{params[:title]}.csv", 'w', encoding: 'Shift_JIS:UTF-8') do |file|
+  File.open("./memos/#{sanitize_filename(params[:title])}.csv", 'w', encoding: 'Shift_JIS:UTF-8') do |file|
     file.write(params[:content])
   end
   erb :new
