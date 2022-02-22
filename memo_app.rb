@@ -2,7 +2,6 @@
 
 require 'sinatra'
 require 'date'
-require 'csv'
 require 'sinatra/reloader' if development?
 require 'pg'
 
