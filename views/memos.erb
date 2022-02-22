@@ -1,0 +1,9 @@
+<form method="get" action='/memos/new'>
+  <input type="submit" value="追加">
+</form>
+
+<ul>
+  <% @memos.exec("SELECT * FROM memos;").each do |memo| %>
+    <li><a href="/memos/<%= memo["title"] %>"><%= memo["title"] %></a></li>
+  <% end %>
+</ul>

@@ -1,0 +1,42 @@
+<form method="post" action="/memos/<%= @title %>">
+  <input type="hidden" name="_method" class="edit_btn" value="patch">
+  <input type="submit" value="更新">
+
+  <p>
+    <label for="title">
+      <input type="text" name="title" size="30" value=<%= @title %>>
+    </label>
+  </p>
+  <p>
+    <label>
+      <label for="t_content"></label>
+      <textarea id="t_content" name="content" placeholder="内容" cols="32" rows="10"><%= @content %></textarea>
+    </label>
+  </p>
+
+</form>
+<table>
+  <tr>
+    <td>
+
+    </td>
+    <td>
+      <form method="post" action="/memos/<%= params[:title] %>">
+        <input type="hidden" name="_method" class="edit_btn" value="delete">
+        <input type="submit" value="削除">
+      </form>
+    </td>
+    <td>
+      <form method="get" action="/memos/<%= params[:title] %>">
+        <input type="submit" class="show_btn" value="戻る">
+      </form>
+    </td>
+    <td>
+      <form method="get" action='/memos'>
+        <input type="submit" class="show_btn" value="一覧に戻る">
+      </form>
+    </td>
+  </tr>
+</table>
+
+
