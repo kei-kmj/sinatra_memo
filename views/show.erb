@@ -1,5 +1,5 @@
 <br>
-<%= @title %>
+<%= escape(@title) %>
 <br>
 <p>
   <label for="t_content"></label><br>
@@ -10,12 +10,12 @@
 <table>
   <tr>
     <td>
-      <form method="get" action="/memos/<%= params[:title] %>/edit">
+      <form method="get" action="/memos/<%= params[:id] %>/edit">
         <input type="submit" class="edit_btn" value="編集">
       </form>
     </td>
     <td>
-      <form method="post" action="/memos/<%= params[:title] %>">
+      <form method="post" action="/memos/<%= params[:id] %>">
         <input type="hidden" name="_method" class="edit_btn" value="delete">
         <input type="submit" value="削除">
       </form>

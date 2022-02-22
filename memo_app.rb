@@ -7,7 +7,6 @@ require 'sinatra/reloader' if development?
 require 'pg'
 
 enable :method_override
-
 set :environment, :production
 
 helpers do
@@ -32,7 +31,7 @@ end
 post '/memos' do
   title = params[:title]
   content = params[:content]
-  memos.exec("INSERT INTO memos(title,content) VALUES ($1,$2);", [title, content])
+  memos.exec('INSERT INTO memos(title,content) VALUES ($1,$2);', [title, content])
   erb :new
   redirect '/memos'
 end
@@ -43,9 +42,9 @@ get '/memos/new' do
 end
 
 # メモ表示
-get '/memos/:title' do
-  title = params[:title]
-  memos.exec("SELECT * FROM memos WHERE title = $1;", [title]).each do |memo|
+get '/memos/:id' do
+  id = params[:id]
+  memos.exec('SELECT * FROM memos WHERE id = $1;', [id]).each do |memo|
     @title = memo['title']
     @content = memo['content']
   end
@@ -53,9 +52,10 @@ get '/memos/:title' do
 end
 
 # メモ編集画面を開く
-get '/memos/:title/edit' do
-  title = params[:title]
-  memos.exec("SELECT * FROM memos WHERE title = $1;", [title]).each do |memo|
+get '/memos/:id/edit' do
+  id = params[:id]
+  memos.exec('SELECT * FROM memos WHERE id = $1;', [id]).each do |memo|
+    @id = memo['id']
     @title = memo['title']
     @content = memo['content']
   end
@@ -63,16 +63,17 @@ get '/memos/:title/edit' do
 end
 
 # メモ編集
-patch '/memos/:title' do
+patch '/memos/:id' do
+  id = params[:id]
   title = params[:title]
   content = params[:content]
-  memos.exec("UPDATE memos SET title= $1,content=$2 WHERE title = $1;", [title, content])
-  redirect "/memos/#{params[:title]}"
+  memos.exec('UPDATE memos SET title= $1,content=$2 WHERE id = $3;', [title, content, id])
+  redirect "/memos/#{params[:id]}"
 end
 
 # メモ削除
-delete '/memos/:title' do
-  title = params[:title]
-  memos.exec("DELETE FROM memos WHERE title = $1;", [title])
+delete '/memos/:id' do
+  id = params[:id]
+  memos.exec('DELETE FROM memos WHERE id = $1;', [id])
   redirect '/memos'
 end
