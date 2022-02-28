@@ -22,7 +22,7 @@ end
 
 # メモ一覧表示
 get '/memos' do
-  @memos = memos
+  @memos = memos.exec('SELECT * FROM memos;')
   erb :memos
 end
 
